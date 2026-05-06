@@ -23,7 +23,6 @@ export function colorize(lines, mode, opts) {
   if (mode === 'none') return lines;
   if (mode === 'rainbow') return rainbow(lines, opts);
   if (mode === 'tint') return tint(lines, opts);
-  if (mode === 'sweep-label') return sweepLabel(lines, opts);
   return lines;
 }
 
@@ -44,24 +43,4 @@ function rainbow(lines, { rainbowStep = 12, time = 0 }) {
 function tint(lines, { tint: rgb = [135, 206, 250] }) {
   const color = fg(rgb[0], rgb[1], rgb[2]);
   return lines.map((line) => (line ? color + line + RESET : line));
-}
-
-function sweepLabel(lines, { label = 'purr~', shimmer = [255, 255, 255], shimmerBase = [110, 110, 110], time = 0 }) {
-  const out = [...lines];
-  if (!label) return out;
-  const cycle = label.length + 10;
-  const glimmer = (time % cycle) - 5;
-  const buf = [PAD + PAD];
-  for (let i = 0; i < label.length; i++) {
-    const close = Math.abs(i - glimmer) <= 1;
-    const c = close ? shimmer : shimmerBase;
-    buf.push(fg(c[0], c[1], c[2]) + label[i]);
-  }
-  buf.push(RESET);
-  if (out.length && out[out.length - 1] === '') {
-    out.splice(out.length - 1, 0, buf.join(''));
-  } else {
-    out.push(buf.join(''));
-  }
-  return out;
 }

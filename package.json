@@ -1,6 +1,6 @@
 {
   "name": "@sebryu/cccat",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A cat status line for Claude Code — sleeps, purrs, walks across your prompt.",
   "type": "module",
   "bin": {

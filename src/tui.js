@@ -9,7 +9,6 @@ const COLOR_MODES = [
   { value: 'none', label: 'none — plain' },
   { value: 'rainbow', label: 'rainbow — drifting hue gradient' },
   { value: 'tint', label: 'tint — single color overlay' },
-  { value: 'sweep-label', label: 'sweep-label — shimmer text below' },
 ];
 
 export async function tui() {

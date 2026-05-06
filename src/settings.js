@@ -9,14 +9,11 @@ export const USER_ANIM_DIR = path.join(CONFIG_DIR, 'animations');
 
 export const DEFAULT_SETTINGS = {
   animation: 'sleep_and_purr',
-  color: 'none',
+  color: 'rainbow',
   frameSeconds: 1,
   trim: 'edges',
   tint: [135, 206, 250],
   rainbowStep: 12,
-  label: 'purr~',
-  shimmer: [255, 255, 255],
-  shimmerBase: [110, 110, 110],
 };
 
 export function loadSettings() {

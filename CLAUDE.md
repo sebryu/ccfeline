@@ -65,7 +65,7 @@ src/
   tui.js          @clack/prompts UI
   settings.js     ~/.config/cccat/settings.json + DEFAULT_SETTINGS
   animations.js   discovery (built-in + user dirs) and parsing
-  color.js        none / rainbow / tint / sweep-label modes
+  color.js        none / rainbow / tint modes
   frame.js        shared trim / pad / time → frame index helpers
   claude.js       patches ~/.claude/settings.json with the statusLine entry
 animations/
