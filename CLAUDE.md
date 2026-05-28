@@ -40,7 +40,7 @@
 ### Naming and discovery
 
 - Filename without `.txt` is the animation's name (used in `settings.json` and the picker).
-- Built-in animations live in `cccat/animations/` (shipped with the package).
+- Built-in animations live in `ccfeline/animations/` (shipped with the package).
 - User animations live in `~/.config/ccfeline/animations/`. A user file shadows a built-in of the same name.
 
 ### Sizing guidance
@@ -93,7 +93,7 @@ For end-to-end testing with Claude Code without publishing, point `statusLine.co
 {
   "statusLine": {
     "type": "command",
-    "command": "bun /absolute/path/to/cccat/src/cli.js",
+    "command": "bun /absolute/path/to/ccfeline/src/cli.js",
     "refreshInterval": 1
   }
 }

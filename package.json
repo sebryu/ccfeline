@@ -35,7 +35,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sebryu/cccat.git"
+    "url": "git+https://github.com/sebryu/ccfeline.git"
   },
   "author": "Sebastian Szewczyk",
   "license": "MIT"
