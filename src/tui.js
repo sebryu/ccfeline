@@ -13,7 +13,7 @@ const COLOR_MODES = [
 
 export async function tui() {
   console.clear();
-  p.intro(pc.bold(pc.cyan('  ≽^•⩊•^≼  cccat ')));
+  p.intro(pc.bold(pc.cyan('  ≽^•⩊•^≼  ccfeline ')));
 
   let settings = loadSettings();
 
@@ -93,7 +93,7 @@ async function pickColor(settings) {
 
 async function runInstall() {
   const runtime = await p.select({
-    message: 'Which runtime should Claude Code use to launch cccat?',
+    message: 'Which runtime should Claude Code use to launch ccfeline?',
     options: [
       { value: 'bun', label: `bun (${claude.COMMANDS.bun})  — recommended, faster` },
       { value: 'node', label: `node (${claude.COMMANDS.node})` },
@@ -111,10 +111,10 @@ async function runInstall() {
 function runUninstall() {
   const result = claude.uninstall();
   if (!result.removed) {
-    p.log.info('cccat was not installed.');
+    p.log.info('ccfeline was not installed.');
     return;
   }
-  p.log.success('Removed cccat from Claude Code settings.');
+  p.log.success('Removed ccfeline from Claude Code settings.');
   if (result.restoredCommand) {
     p.log.message(`Restored previous statusLine: ${pc.cyan(result.restoredCommand)}`);
     p.log.message(pc.dim(`from ${result.backupPath}`));

@@ -1,4 +1,4 @@
-# cccat — contributor notes
+# ccfeline — contributor notes
 
 ## Adding a new cat animation
 
@@ -13,7 +13,7 @@
    ```bash
    echo '{}' | bun src/cli.js                    # current frame
    bun src/cli.js preview                        # one frame with trailing newline
-   CCCAT_CONFIG_DIR=/tmp/cccat-test bun src/cli.js  # sandboxed settings
+   CCFELINE_CONFIG_DIR=/tmp/ccfeline-test bun src/cli.js  # sandboxed settings
    ```
 4. To make the new animation the default, change `DEFAULT_SETTINGS.animation` in `src/settings.js`. Otherwise it shows up in the picker and users opt in.
 
@@ -41,7 +41,7 @@
 
 - Filename without `.txt` is the animation's name (used in `settings.json` and the picker).
 - Built-in animations live in `cccat/animations/` (shipped with the package).
-- User animations live in `~/.config/cccat/animations/`. A user file shadows a built-in of the same name.
+- User animations live in `~/.config/ccfeline/animations/`. A user file shadows a built-in of the same name.
 
 ### Sizing guidance
 
@@ -63,7 +63,7 @@ src/
   preview.js     live animated preview, redraws frames in place
   welcome.js      first-run install + idempotent status messages
   tui.js          @clack/prompts UI
-  settings.js     ~/.config/cccat/settings.json + DEFAULT_SETTINGS
+  settings.js     ~/.config/ccfeline/settings.json + DEFAULT_SETTINGS
   animations.js   discovery (built-in + user dirs) and parsing
   color.js        none / rainbow / tint modes
   frame.js        shared trim / pad / time → frame index helpers

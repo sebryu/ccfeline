@@ -34,7 +34,7 @@ async function main() {
     const { uninstall } = await import('./claude.js');
     const result = uninstall();
     if (!result.removed) {
-      process.stdout.write('cccat was not installed\n');
+      process.stdout.write('ccfeline was not installed\n');
       return;
     }
     process.stdout.write('uninstalled\n');
@@ -46,7 +46,7 @@ async function main() {
   }
   if (cmd === 'config') {
     if (!process.stdin.isTTY) {
-      process.stderr.write('cccat config: requires a TTY\n');
+      process.stderr.write('ccfeline config: requires a TTY\n');
       process.exit(1);
     }
     const { tui } = await import('./tui.js');
@@ -55,7 +55,7 @@ async function main() {
 
   // No subcommand:
   //   piped stdin (Claude Code calling) → render one frame
-  //   TTY (user just ran `bunx cccat`) → idempotent install + status
+  //   TTY (user just ran `bunx ccfeline`) → idempotent install + status
   if (!process.stdin.isTTY) {
     const { render } = await import('./render.js');
     return render();
@@ -74,33 +74,33 @@ async function printHelp() {
   const { SETTINGS_PATH, USER_ANIM_DIR } = await import('./settings.js');
   process.stdout.write(
     [
-      'cccat — a cat status line for Claude Code',
+      'ccfeline — a cat status line for Claude Code',
       '',
       'Usage:',
-      '  cccat                   first run: install. otherwise: show status.',
+      '  ccfeline                   first run: install. otherwise: show status.',
       '                          (piped stdin → render one frame)',
-      '  cccat config            interactive config (TUI)',
-      '  cccat preview           5-second animated preview in your terminal',
-      '  cccat pspsps [--node|--bun]',
-      '                          add cccat to ~/.claude/settings.json (call the cat in)',
+      '  ccfeline config            interactive config (TUI)',
+      '  ccfeline preview           5-second animated preview in your terminal',
+      '  ccfeline pspsps [--node|--bun]',
+      '                          add ccfeline to ~/.claude/settings.json (call the cat in)',
       '                          runtime is auto-detected (bunx if available, else npx)',
-      '  cccat install           alias for pspsps',
-      '  cccat shoo              remove cccat from ~/.claude/settings.json',
+      '  ccfeline install           alias for pspsps',
+      '  ccfeline shoo              remove ccfeline from ~/.claude/settings.json',
       '                          (restores previous statusLine if a backup exists)',
-      '  cccat uninstall         alias for shoo',
-      '  cccat render            render one frame to stdout',
-      '  cccat --version         print version',
-      '  cccat --help            this help',
+      '  ccfeline uninstall         alias for shoo',
+      '  ccfeline render            render one frame to stdout',
+      '  ccfeline --version         print version',
+      '  ccfeline --help            this help',
       '',
       `Settings: ${SETTINGS_PATH} (defaults baked in).`,
       `Custom animations: drop .txt files into ${USER_ANIM_DIR}/.`,
-      'Override the config dir with $CCCAT_CONFIG_DIR or $XDG_CONFIG_HOME.',
+      'Override the config dir with $CCFELINE_CONFIG_DIR or $XDG_CONFIG_HOME.',
       '',
     ].join('\n')
   );
 }
 
 main().catch((err) => {
-  process.stderr.write(`cccat: ${err.message || err}\n`);
+  process.stderr.write(`ccfeline: ${err.message || err}\n`);
   process.exit(1);
 });
