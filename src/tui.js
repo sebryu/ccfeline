@@ -22,7 +22,7 @@ export async function tui() {
     const action = await p.select({
       message: 'What would you like to do?',
       options: [
-        { value: 'preview', label: 'Preview (5s animated)' },
+        { value: 'preview', label: 'Preview (live — press any key to stop)' },
         {
           value: 'color',
           label: `Pick color mode  ${pc.dim(`(current: ${settings.color})`)}`,
@@ -44,7 +44,7 @@ export async function tui() {
 
     if (p.isCancel(action) || action === 'quit') break;
 
-    if (action === 'preview') await livePreview({ durationMs: 5000 });
+    if (action === 'preview') await livePreview({ untilKeypress: true });
     else if (action === 'color') settings = await pickColor(settings);
     else if (action === 'animation') settings = await pickAnimation(settings);
     else if (action === 'install') await runInstall();
