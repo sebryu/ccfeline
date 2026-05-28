@@ -1,10 +1,10 @@
 {
-  "name": "@sebryu/cccat",
-  "version": "0.0.3",
+  "name": "ccfeline",
+  "version": "0.1.0",
   "description": "A cat status line for Claude Code — sleeps, purrs, walks across your prompt.",
   "type": "module",
   "bin": {
-    "cccat": "src/cli.js"
+    "ccfeline": "src/cli.js"
   },
   "main": "src/cli.js",
   "files": [

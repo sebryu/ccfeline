@@ -8,14 +8,14 @@ const CLAUDE_DIR = process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.cl
 export const CLAUDE_SETTINGS = path.join(CLAUDE_DIR, 'settings.json');
 
 // Pin to the version that performed the install so users don't auto-upgrade
-// on every status-line refresh. To upgrade: `bunx cccat@latest pspsps`.
+// on every status-line refresh. To upgrade: `bunx ccfeline@latest pspsps`.
 const PKG_VERSION = JSON.parse(
   fs.readFileSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'package.json'), 'utf8')
 ).version;
 
 export const COMMANDS = {
-  bun: `bunx -y @sebryu/cccat@${PKG_VERSION}`,
-  node: `npx -y @sebryu/cccat@${PKG_VERSION}`,
+  bun: `bunx -y ccfeline@${PKG_VERSION}`,
+  node: `npx -y ccfeline@${PKG_VERSION}`,
 };
 
 export function detectRuntime() {
@@ -40,7 +40,7 @@ function writeClaudeSettings(settings) {
 
 export function isInstalled() {
   const s = readClaudeSettings();
-  return Boolean(s.statusLine?.command?.includes('cccat'));
+  return Boolean(s.statusLine?.command?.includes('ccfeline'));
 }
 
 function backupForeignStatusLine() {
@@ -57,7 +57,7 @@ function backupForeignStatusLine() {
     return null;
   }
   const cmd = existing.statusLine?.command;
-  if (!cmd || cmd.includes('cccat')) return null;
+  if (!cmd || cmd.includes('ccfeline')) return null;
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
   const backupPath = `${CLAUDE_SETTINGS}.bak-${stamp}`;
   fs.writeFileSync(backupPath, raw);
@@ -87,7 +87,7 @@ function findLatestBackup() {
 
 export function uninstall() {
   const s = readClaudeSettings();
-  if (!s.statusLine?.command?.includes('cccat')) return { removed: false };
+  if (!s.statusLine?.command?.includes('ccfeline')) return { removed: false };
 
   const backupPath = findLatestBackup();
   let restoredCommand = null;

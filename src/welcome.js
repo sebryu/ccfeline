@@ -11,11 +11,11 @@ export function runDefaultInstall() {
     process.stdout.write(
       [
         '',
-        pc.bold('  ≽^•⩊•^≼  cccat is already set up.'),
+        pc.bold('  ≽^•⩊•^≼  ccfeline is already set up.'),
         '',
-        `  ${pc.dim('Customize:')}  ${pc.cyan('cccat config')}`,
-        `  ${pc.dim('Preview:')}    ${pc.cyan('cccat preview')}`,
-        `  ${pc.dim('Remove:')}     ${pc.cyan('cccat uninstall')}`,
+        `  ${pc.dim('Customize:')}  ${pc.cyan('ccfeline config')}`,
+        `  ${pc.dim('Preview:')}    ${pc.cyan('ccfeline preview')}`,
+        `  ${pc.dim('Remove:')}     ${pc.cyan('ccfeline uninstall')}`,
         `  ${pc.dim('Settings:')}   ${pc.dim(SETTINGS_PATH)}`,
         '',
       ].join('\n')
@@ -27,15 +27,15 @@ export function runDefaultInstall() {
   process.stdout.write(
     [
       '',
-      pc.bold(pc.green('  ✓ cccat installed!')),
+      pc.bold(pc.green('  ✓ ccfeline installed!')),
       '',
       `  ${pc.dim('Status line:')}  ${pc.dim(CLAUDE_SETTINGS)}`,
       ...(backupPath ? [`  ${pc.dim('Backup:')}       ${pc.dim(backupPath)}`] : []),
       `  ${pc.dim('Settings:')}     ${pc.dim(SETTINGS_PATH)}`,
       `  ${pc.dim('Command:')}      ${pc.cyan(command)}`,
       '',
-      `  ${pc.dim('Try:')} ${pc.cyan('cccat preview')}    ${pc.dim('— animated preview')}`,
-      `  ${pc.dim('     ')} ${pc.cyan('cccat config')}     ${pc.dim('— pick colors etc.')}`,
+      `  ${pc.dim('Try:')} ${pc.cyan('ccfeline preview')}    ${pc.dim('— animated preview')}`,
+      `  ${pc.dim('     ')} ${pc.cyan('ccfeline config')}     ${pc.dim('— pick colors etc.')}`,
       '',
       pc.dim('  Restart Claude Code to see the cat above your prompt.'),
       '',

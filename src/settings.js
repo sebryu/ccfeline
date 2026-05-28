@@ -3,7 +3,7 @@ import path from 'node:path';
 import os from 'node:os';
 
 const xdg = process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config');
-export const CONFIG_DIR = process.env.CCCAT_CONFIG_DIR || path.join(xdg, 'cccat');
+export const CONFIG_DIR = process.env.CCFELINE_CONFIG_DIR || path.join(xdg, 'ccfeline');
 export const SETTINGS_PATH = path.join(CONFIG_DIR, 'settings.json');
 export const USER_ANIM_DIR = path.join(CONFIG_DIR, 'animations');
 

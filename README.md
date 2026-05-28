@@ -1,4 +1,4 @@
-# cccat
+# ccfeline
 
 A status line cat for [Claude Code](https://claude.com/claude-code). Relax with a cute cat while Claude does the work.
 
@@ -16,13 +16,13 @@ Pick whichever runtime you have on hand.
 ### With bunx
 
 ```bash
-bunx @sebryu/cccat pspsps
+bunx ccfeline pspsps
 ```
 
 ### With npx
 
 ```bash
-npx -y @sebryu/cccat pspsps
+npx -y ccfeline pspsps
 ```
 
 Either one writes the status line into `~/.claude/settings.json`, pinned to this version — no silent auto-upgrade every refresh.
@@ -30,13 +30,13 @@ Either one writes the status line into `~/.claude/settings.json`, pinned to this
 ## Commands
 
 ```bash
-cccat pspsps     # call the cat in   (alias: install)
-cccat shoo       # send it away      (alias: uninstall — restores any previous statusLine)
-cccat config     # interactive config: colors, paths
-cccat preview    # 5-second animated preview
+ccfeline pspsps     # call the cat in   (alias: install)
+ccfeline shoo       # send it away      (alias: uninstall — restores any previous statusLine)
+ccfeline config     # interactive config: colors, paths
+ccfeline preview    # 5-second animated preview
 ```
 
-To upgrade later: `bunx @sebryu/cccat@latest pspsps` (the `@latest` is needed to bust bunx's cache).
+To upgrade later: `bunx ccfeline@latest pspsps` (the `@latest` is needed to bust bunx's cache).
 
 ## License
 
