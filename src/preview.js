@@ -6,7 +6,7 @@ import { prepareFrame, pickFrameIndex } from './frame.js';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// durationMs   — how long the fixed-length preview runs (used by `cccat preview`).
+// durationMs   — how long the fixed-length preview runs (used by `ccfeline preview`).
 // untilKeypress — run forever, stopping on the next keypress (used by the TUI).
 //                 Only honored on a TTY; falls back to the fixed-length loop otherwise.
 export async function livePreview({ durationMs = 5000, untilKeypress = false } = {}) {
