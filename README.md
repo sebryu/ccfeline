@@ -2,6 +2,8 @@
 
 A status line cat for [Claude Code](https://claude.com/claude-code). Relax with a cute cat while Claude does the work.
 
+<video src="demo.mp4" autoplay loop muted playsinline></video>
+
 ```
               /\_/\
              ( -.- )
