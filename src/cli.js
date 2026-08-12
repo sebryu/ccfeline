@@ -83,7 +83,7 @@ async function printHelp() {
       '  ccfeline preview           5-second animated preview in your terminal',
       '  ccfeline pspsps [--node|--bun]',
       '                          add ccfeline to ~/.claude/settings.json (call the cat in)',
-      '                          runtime is auto-detected (bunx if available, else npx)',
+      '                          runtime matches how you invoked it (bunx / npx)',
       '  ccfeline install           alias for pspsps',
       '  ccfeline shoo              remove ccfeline from ~/.claude/settings.json',
       '                          (restores previous statusLine if a backup exists)',

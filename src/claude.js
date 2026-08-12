@@ -1,14 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
-import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const CLAUDE_DIR = process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude');
 export const CLAUDE_SETTINGS = path.join(CLAUDE_DIR, 'settings.json');
 
 // Pin to the version that performed the install so users don't auto-upgrade
-// on every status-line refresh. To upgrade: `bunx ccfeline@latest pspsps`.
+// on every status-line refresh. To upgrade: re-run with @latest (e.g.
+// `npx ccfeline@latest pspsps` or `bunx ccfeline@latest pspsps`).
 const PKG_VERSION = JSON.parse(
   fs.readFileSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'package.json'), 'utf8')
 ).version;
@@ -19,10 +19,10 @@ export const COMMANDS = {
 };
 
 export function detectRuntime() {
-  if (process.versions.bun) return 'bun';
-  const probe = process.platform === 'win32' ? 'where' : 'which';
-  const result = spawnSync(probe, ['bunx'], { stdio: 'ignore' });
-  return result.status === 0 ? 'bun' : 'node';
+  // Mirror the runtime that launched us rather than predicting a "best" one:
+  // the invoker is provably present and working, so the written command always
+  // runs. bunx sets process.versions.bun; npx (and bare node) do not.
+  return process.versions.bun ? 'bun' : 'node';
 }
 
 export function readClaudeSettings() {
