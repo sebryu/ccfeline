@@ -1,12 +1,27 @@
-name: Create release
+name: Release
+
+# One-click release: bump -> publish to npm -> push tag -> GitHub Release.
+#
+# npm auth uses trusted publishing (OIDC), so there is no NPM_TOKEN secret.
+# The trust relationship is configured on npmjs.com against this repo AND this
+# filename -- renaming this file breaks publishing until npm is updated to match.
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version bump type'
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
 
 permissions:
-  contents: write
+  contents: write # commit the bump, push the tag, create the release
+  id-token: write # mint the OIDC token npm trades for publish rights
 
 jobs:
   release:
@@ -16,11 +31,46 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22 # trusted publishing needs >= 22.14.0
+          registry-url: https://registry.npmjs.org
+
+      - name: Upgrade npm
+        run: npm install -g npm@latest # trusted publishing needs >= 11.5.1
+
+      - name: Bump version
+        id: version
+        run: |
+          npm version ${{ inputs.bump }} --no-git-tag-version
+          echo "new=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      # No dependencies are installed: the render path imports only node: builtins
+      # and local modules, and publishing needs no build.
+      - name: Smoke-test the render path
+        run: echo '{}' | node src/cli.js
+
+      # Publish before touching git, so a rejected publish leaves no orphan tag
+      # pointing at a version that never shipped.
+      - name: Publish to npm
+        run: npm publish
+
+      - name: Push bump commit and tag
+        env:
+          VERSION: ${{ steps.version.outputs.new }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "chore: bump version to v$VERSION"
+          git tag "v$VERSION"
+          git push origin HEAD "refs/tags/v$VERSION"
+
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ github.ref_name }}
+          VERSION: ${{ steps.version.outputs.new }}
         run: |
-          gh release create "$TAG" \
-            --title "$TAG" \
+          gh release create "v$VERSION" \
+            --title "v$VERSION" \
             --generate-notes
